@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+
+import { DatabaseModule } from './database/database.module';
+import { PostsModule } from './posts/posts.module';
+import database from './config/database.config';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/blog_db')],
-  controllers: [],
-  providers: [],
+  imports: [
+    ConfigModule.forRoot({
+      load: [database],
+      isGlobal: true,
+    }),
+    DatabaseModule,
+    PostsModule,
+  ],
 })
 export class AppModule {}
