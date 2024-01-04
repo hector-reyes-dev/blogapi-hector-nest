@@ -1,12 +1,45 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
+import { CreatePostDto } from 'src/dto/create-post.dto';
+import { UpdatePostDto } from 'src/dto/update-post.dto';
 
 @Controller('posts')
 export class PostsController {
   constructor(private postsService: PostsService) {}
 
   @Get()
-  getPosts() {
-    return this.postsService.findAll();
+  async getPosts() {
+    return await this.postsService.findAll();
+  }
+
+  @Get('/:id')
+  async findOne(@Param('id') id: string) {
+    const post = await this.postsService.findOne(id);
+    return post;
+  }
+
+  @Post()
+  async create(@Body() body: CreatePostDto) {
+    return await this.postsService.create(body);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() body: UpdatePostDto) {
+    const post = await this.postsService.update(id, body);
+    return post;
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    const post = await this.postsService.delete(id);
+    return post;
   }
 }
