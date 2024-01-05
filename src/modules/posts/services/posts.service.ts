@@ -5,12 +5,17 @@ import { Model } from 'mongoose';
 import { Post } from '../schemas/post.schema';
 import { CreatePostDto } from '../dto/create-post.dto';
 import { UpdatePostDto } from '../dto/update-post.dto';
+import { PaginationPostsDto } from '../dto/pagination-posts.dto';
 
 @Injectable()
 export class PostsService {
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
 
-  async findAll() {
+  async findAll(params?: PaginationPostsDto) {
+    if (params) {
+      const { limit, offset } = params;
+      return this.postModel.find().limit(limit).skip(offset).exec();
+    }
     return this.postModel.find().exec();
   }
 

@@ -6,11 +6,13 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 
 import { PostsService } from '../services/posts.service';
 import { CreatePostDto } from '../dto/create-post.dto';
 import { UpdatePostDto } from '../dto/update-post.dto';
+import { PaginationPostsDto } from '../dto/pagination-posts.dto';
 import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 
 @Controller('posts')
@@ -18,8 +20,8 @@ export class PostsController {
   constructor(private postsService: PostsService) {}
 
   @Get()
-  async getPosts() {
-    return await this.postsService.findAll();
+  async getPosts(@Query() params: PaginationPostsDto) {
+    return await this.postsService.findAll(params);
   }
 
   @Get(':id')
