@@ -20,7 +20,7 @@ export class PostsController {
     return await this.postsService.findAll();
   }
 
-  @Get('/:id')
+  @Get(':id')
   async findOne(@Param('id') id: string) {
     const post = await this.postsService.findOne(id);
     return post;
