@@ -7,9 +7,11 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+
 import { PostsService } from '../services/posts.service';
 import { CreatePostDto } from '../dto/create-post.dto';
 import { UpdatePostDto } from '../dto/update-post.dto';
+import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 
 @Controller('posts')
 export class PostsController {
@@ -21,7 +23,7 @@ export class PostsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', MongoIdPipe) id: string) {
     const post = await this.postsService.findOne(id);
     return post;
   }
@@ -32,13 +34,16 @@ export class PostsController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() body: UpdatePostDto) {
+  async update(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() body: UpdatePostDto,
+  ) {
     const post = await this.postsService.update(id, body);
     return post;
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id', MongoIdPipe) id: string) {
     const post = await this.postsService.delete(id);
     return post;
   }

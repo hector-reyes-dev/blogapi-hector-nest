@@ -10,6 +10,7 @@ import {
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -21,7 +22,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', MongoIdPipe) id: string) {
     const user = await this.usersService.findOne(id);
     return user;
   }
@@ -32,13 +33,16 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() body: UpdateUserDto) {
+  async update(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() body: UpdateUserDto,
+  ) {
     const user = await this.usersService.update(id, body);
     return user;
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id', MongoIdPipe) id: string) {
     const user = await this.usersService.delete(id);
     return user;
   }
