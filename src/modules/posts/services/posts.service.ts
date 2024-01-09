@@ -14,13 +14,18 @@ export class PostsService {
   async findAll(params?: PaginationPostsDto) {
     if (params) {
       const { limit, offset } = params;
-      return this.postModel.find().limit(limit).skip(offset).exec();
+      return this.postModel
+        .find()
+        .populate('author')
+        .limit(limit)
+        .skip(offset)
+        .exec();
     }
-    return this.postModel.find().exec();
+    return this.postModel.find().populate('author').exec();
   }
 
   async findOne(id: string) {
-    const post = await this.postModel.findById(id);
+    const post = await this.postModel.findById(id).populate('author').exec();
     if (!post) throw new NotFoundException(`Post #${id} not found`);
     return post;
   }

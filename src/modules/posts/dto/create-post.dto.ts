@@ -1,11 +1,11 @@
-import { IsString, IsNotEmpty, IsArray } from 'class-validator';
+import { IsString, IsNotEmpty, IsArray, IsMongoId } from 'class-validator';
 
 export class CreatePostDto {
   @IsString()
   @IsNotEmpty()
   title: string;
 
-  @IsString()
+  @IsMongoId()
   @IsNotEmpty()
   author: string;
 
