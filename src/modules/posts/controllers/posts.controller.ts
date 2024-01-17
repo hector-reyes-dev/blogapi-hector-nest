@@ -34,6 +34,12 @@ export class PostsController {
     return post;
   }
 
+  @Get('user/:id')
+  async findByAuthor(@Param('id', MongoIdPipe) id: string) {
+    const posts = await this.postsService.findByAuthor(id);
+    return posts;
+  }
+
   @Post()
   async create(@Body() body: CreatePostDto) {
     return await this.postsService.create(body);

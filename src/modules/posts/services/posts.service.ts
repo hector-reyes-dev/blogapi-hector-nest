@@ -30,6 +30,10 @@ export class PostsService {
     return post;
   }
 
+  async findByAuthor(authorId: string) {
+    return this.postModel.find({ author: authorId }).populate('author').exec();
+  }
+
   async create(createPost: CreatePostDto): Promise<Post> {
     const createdPost = new this.postModel(createPost);
     return createdPost.save();
