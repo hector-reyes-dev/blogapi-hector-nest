@@ -13,7 +13,7 @@ export class PostsService {
 
   async findAll(params?: PaginationPostsDto) {
     if (params) {
-      const { limit, offset } = params;
+      const { limit = 10, offset } = params;
       return this.postModel
         .find()
         .populate('author')

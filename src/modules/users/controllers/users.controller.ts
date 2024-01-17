@@ -25,6 +25,7 @@ export class UsersController {
     return await this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id', MongoIdPipe) id: string) {
     const user = await this.usersService.findOne(id);
@@ -36,6 +37,7 @@ export class UsersController {
     return this.usersService.create(body);
   }
 
+  @UseGuards(JwtAuthGuard, IsAdminGuard)
   @Put(':id')
   async update(
     @Param('id', MongoIdPipe) id: string,
@@ -45,6 +47,7 @@ export class UsersController {
     return user;
   }
 
+  @UseGuards(JwtAuthGuard, IsAdminGuard)
   @Delete(':id')
   async delete(@Param('id', MongoIdPipe) id: string) {
     const user = await this.usersService.delete(id);
