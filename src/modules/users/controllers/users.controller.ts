@@ -13,12 +13,13 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard';
+import { IsAdminGuard } from '../../../auth/guards/is-admin.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, IsAdminGuard)
   @Get()
   async getUsers() {
     return await this.usersService.findAll();
