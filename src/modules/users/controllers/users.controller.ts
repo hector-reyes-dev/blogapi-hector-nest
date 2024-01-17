@@ -33,7 +33,7 @@ export class UsersController {
 
   @Post()
   async create(@Body() body: CreateUserDto) {
-    return await this.usersService.create(body);
+    return this.usersService.create(body);
   }
 
   @Put(':id')
