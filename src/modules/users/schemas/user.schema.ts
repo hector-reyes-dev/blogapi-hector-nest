@@ -6,10 +6,10 @@ export class User extends Document {
   @Prop({ required: true })
   username: string;
 
-  @Prop({ required: true, select: false })
+  @Prop({ required: true })
   password: string;
 
-  @Prop({ default: false, select: false })
+  @Prop({ default: false })
   isAdmin: boolean;
 }
 
