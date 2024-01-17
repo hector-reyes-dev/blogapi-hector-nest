@@ -5,6 +5,7 @@ import { DatabaseModule } from './database/database.module';
 import { PostsModule } from './modules/posts/posts.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './modules/admin/admin.module';
 import database from './config/database.config';
 import jwtConfig from './config/jwt.config';
 
@@ -18,6 +19,7 @@ import jwtConfig from './config/jwt.config';
     PostsModule,
     UsersModule,
     AuthModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
