@@ -9,19 +9,25 @@ import { PaginationPostsDto } from '../dto/pagination-posts.dto';
 
 @Injectable()
 export class PostsService {
+  itemsLimit = 10;
+
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
 
   async findAll(params?: PaginationPostsDto) {
-    if (params) {
-      const { limit = 10, offset } = params;
+    if (params.limit && params.offset) {
       return this.postModel
         .find()
         .populate('author')
-        .limit(limit)
-        .skip(offset)
+        .limit(params.limit)
+        .skip(params.offset)
         .exec();
     }
-    return this.postModel.find().populate('author').exec();
+
+    return this.postModel
+      .find()
+      .populate('author')
+      .limit(params.limit || this.itemsLimit)
+      .exec();
   }
 
   async findOne(id: string) {
@@ -32,6 +38,42 @@ export class PostsService {
 
   async findByAuthor(authorId: string) {
     return this.postModel.find({ author: authorId }).populate('author').exec();
+  }
+
+  async searchPosts(query: string, params?: PaginationPostsDto) {
+    let posts = [];
+    const queryRegx = new RegExp(query, 'i');
+    const filter = {
+      $or: [
+        { title: { $regex: queryRegx } },
+        { content: { $regex: queryRegx } },
+      ],
+    };
+
+    if (params.limit && params.offset) {
+      posts = await this.postModel
+        .find(filter)
+        .populate('author')
+        .limit(params.limit)
+        .skip(params.offset)
+        .exec();
+
+      if (!posts.length)
+        throw new NotFoundException(`Posts with ${query} not found`);
+
+      return posts;
+    }
+
+    posts = await this.postModel
+      .find(filter)
+      .populate('author')
+      .limit(params.limit || this.itemsLimit)
+      .exec();
+
+    if (!posts.length)
+      throw new NotFoundException(`Posts with ${query} not found`);
+
+    return posts;
   }
 
   async create(createPost: CreatePostDto): Promise<Post> {

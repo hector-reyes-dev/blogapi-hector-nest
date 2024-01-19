@@ -28,6 +28,15 @@ export class PostsController {
     return await this.postsService.findAll(params);
   }
 
+  @Get('search')
+  async searchPosts(
+    @Query('query') query: string,
+    @Query() params: PaginationPostsDto,
+  ) {
+    const posts = await this.postsService.searchPosts(query, params);
+    return posts;
+  }
+
   @Get(':id')
   async findOne(@Param('id', MongoIdPipe) id: string) {
     const post = await this.postsService.findOne(id);
