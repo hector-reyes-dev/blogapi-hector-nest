@@ -14,20 +14,29 @@ export class PostsService {
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
 
   async findAll(params?: PaginationPostsDto) {
+    let posts = [];
     if (params.limit && params.offset) {
-      return this.postModel
+      posts = await this.postModel
         .find()
         .populate('author')
         .limit(params.limit)
         .skip(params.offset)
         .exec();
+
+      if (!posts.length) throw new NotFoundException(`Posts not found`);
+
+      return posts;
     }
 
-    return this.postModel
+    posts = await this.postModel
       .find()
       .populate('author')
       .limit(params.limit || this.itemsLimit)
       .exec();
+
+    if (!posts.length) throw new NotFoundException(`Posts not found`);
+
+    return posts;
   }
 
   async findOne(id: string) {

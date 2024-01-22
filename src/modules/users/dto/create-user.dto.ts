@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, OmitType } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsNotEmpty,
@@ -29,4 +29,6 @@ export class CreateAdminUserDto {
   isAdmin? = false;
 }
 
-export type CreateUserDto = Omit<CreateAdminUserDto, 'isAdmin'>;
+export class CreateUserDto extends OmitType(CreateAdminUserDto, [
+  'isAdmin',
+] as const) {}
