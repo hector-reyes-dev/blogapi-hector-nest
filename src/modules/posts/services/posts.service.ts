@@ -76,6 +76,38 @@ export class PostsService {
     return posts;
   }
 
+  async findPostsByCategory(category: string, params?: PaginationPostsDto) {
+    let posts = [];
+    const queryRegx = new RegExp(category, 'i');
+    const filter = { categories: { $regex: queryRegx } };
+
+    if (params.limit && params.offset) {
+      posts = await this.postModel
+        .find(filter)
+        .populate('author')
+        .limit(params.limit)
+        .exec();
+
+      if (!posts.length)
+        throw new NotFoundException(
+          `Posts with category ${category} not found`,
+        );
+
+      return posts;
+    }
+
+    posts = await this.postModel
+      .find(filter)
+      .populate('author')
+      .limit(params.limit || this.itemsLimit)
+      .exec();
+
+    if (!posts.length)
+      throw new NotFoundException(`Posts with category ${category} not found`);
+
+    return posts;
+  }
+
   async create(createPost: CreatePostDto): Promise<Post> {
     const createdPost = new this.postModel(createPost);
     return createdPost.save();

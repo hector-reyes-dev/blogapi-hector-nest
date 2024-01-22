@@ -22,7 +22,6 @@ import { IsAdminGuard } from 'src/auth/guards/is-admin.guard';
 export class PostsController {
   constructor(private postsService: PostsService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   async getPosts(@Query() params: PaginationPostsDto) {
     return await this.postsService.findAll(params);
@@ -34,6 +33,21 @@ export class PostsController {
     @Query() params: PaginationPostsDto,
   ) {
     const posts = await this.postsService.searchPosts(query, params);
+    return posts;
+  }
+
+  @Get('filter/category/:category')
+  async filterPostsByCategory(
+    @Param('category') category: string,
+    @Query() params: PaginationPostsDto,
+  ) {
+    const posts = await this.postsService.findPostsByCategory(category, params);
+    return posts;
+  }
+
+  @Get('filter/author/:id')
+  async filterPostsByAuthor(@Param('id', MongoIdPipe) id: string) {
+    const posts = await this.postsService.findByAuthor(id);
     return posts;
   }
 
@@ -49,6 +63,7 @@ export class PostsController {
     return posts;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() body: CreatePostDto) {
     return await this.postsService.create(body);
