@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsNotEmpty,
@@ -6,17 +7,26 @@ import {
   Length,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateAdminUserDto {
+  @ApiProperty({ type: String, description: "User's username" })
   @IsString()
   @IsNotEmpty()
   username: string;
 
+  @ApiProperty({ type: String, description: "User's password" })
   @IsString()
   @IsNotEmpty()
   @Length(6)
   password: string;
 
+  @ApiProperty({
+    type: Boolean,
+    description: "User's isAdmin optional property",
+    default: false,
+  })
   @IsBoolean()
   @IsOptional()
   isAdmin? = false;
 }
+
+export type CreateUserDto = Omit<CreateAdminUserDto, 'isAdmin'>;

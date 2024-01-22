@@ -8,8 +8,9 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+
 import { UsersService } from '../services/users.service';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { CreateUserDto, CreateAdminUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard';
@@ -35,6 +36,12 @@ export class UsersController {
 
   @Post()
   async create(@Body() body: CreateUserDto) {
+    return this.usersService.create(body);
+  }
+
+  @UseGuards(JwtAuthGuard, IsAdminGuard)
+  @Post()
+  async createAdmin(@Body() body: CreateAdminUserDto) {
     return this.usersService.create(body);
   }
 
