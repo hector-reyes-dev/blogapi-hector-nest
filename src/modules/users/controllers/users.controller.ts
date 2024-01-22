@@ -14,6 +14,7 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { MongoIdPipe } from '../../../common/mongo-id.pipe';
 import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard';
 import { IsAdminGuard } from '../../../auth/guards/is-admin.guard';
+import { IsOwnerGuard } from '../../../common/guards/is-owner.guard';
 
 @Controller('users')
 export class UsersController {
@@ -37,7 +38,7 @@ export class UsersController {
     return this.usersService.create(body);
   }
 
-  @UseGuards(JwtAuthGuard, IsAdminGuard)
+  @UseGuards(JwtAuthGuard, IsOwnerGuard)
   @Put(':id')
   async update(
     @Param('id', MongoIdPipe) id: string,

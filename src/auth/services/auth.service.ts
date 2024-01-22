@@ -24,10 +24,15 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
-    const payload = { username: user.username, isAdmin: user.isAdmin };
+  async login({ username, isAdmin }: User) {
+    const { _id } = await this.userService.findByUsername(username);
+    const payload = {
+      id: _id,
+      username: username,
+      isAdmin: isAdmin,
+    };
     const token = await this.jwtService.sign(payload);
 
-    return { token, user };
+    return { token, payload };
   }
 }
