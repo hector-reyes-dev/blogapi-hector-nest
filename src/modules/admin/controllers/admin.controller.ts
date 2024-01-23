@@ -47,7 +47,7 @@ export class AdminController {
   }
 
   @Delete('users/:id')
-  @ApiOperation({ summary: 'Delete User.' })
+  @ApiOperation({ summary: 'Delete user by ID.' })
   @ApiOkResponse({ description: 'User has been successfully deleted.' })
   @ApiNotFoundResponse({ description: 'User not founded.' })
   @ApiUnauthorizedResponse({

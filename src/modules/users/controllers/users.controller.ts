@@ -47,7 +47,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get user by ID.' })
+  @ApiOperation({ summary: 'Find user by ID.' })
   @ApiFoundResponse({ description: 'User founded.' })
   @ApiNotFoundResponse({ description: 'User not found.' })
   @ApiUnauthorizedResponse({
@@ -82,7 +82,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update user.' })
+  @ApiOperation({ summary: 'Update an existing user by ID.' })
   @ApiOkResponse({ description: 'User has been successfully updated.' })
   @ApiNotFoundResponse({ description: 'User not founded.' })
   @ApiUnauthorizedResponse({
@@ -100,7 +100,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete User.' })
+  @ApiOperation({ summary: 'Delete an existing user by ID.' })
   @ApiOkResponse({ description: 'User has been successfully deleted.' })
   @ApiNotFoundResponse({ description: 'User not founded.' })
   @ApiUnauthorizedResponse({

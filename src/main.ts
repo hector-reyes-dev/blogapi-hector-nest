@@ -13,6 +13,7 @@ async function bootstrap() {
       "Héctor's Creative Dev Blog API allows developers to manage user profiles, create and edit posts, and perform searches, offering a seamless experience for writing and sharing content.",
     )
     .setVersion('1.0')
+    .setBasePath('api')
     .addBearerAuth()
     .build();
 

@@ -15,7 +15,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  @ApiOperation({ summary: 'Log In to pbtain Access Token.' })
+  @ApiOperation({ summary: 'Log in to get Access Token.' })
   @ApiOkResponse({ description: 'Generate Access Token' })
   @ApiNotFoundResponse({ description: 'User not found' })
   @UseGuards(LocalAuthGuard)

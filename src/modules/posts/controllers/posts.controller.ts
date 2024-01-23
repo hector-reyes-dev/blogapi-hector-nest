@@ -36,16 +36,16 @@ export class PostsController {
 
   @Get()
   @ApiOperation({ summary: 'Get all posts.' })
-  @ApiOkResponse()
-  @ApiNotFoundResponse()
+  @ApiOkResponse({ description: 'Return all posts.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async getPosts(@Query() params: PaginationPostsDto) {
     return await this.postsService.findAll(params);
   }
 
   @Get('search')
-  @ApiOperation({ summary: 'Search posts by query param.' })
-  @ApiFoundResponse()
-  @ApiNotFoundResponse()
+  @ApiOperation({ summary: 'Find posts by query param.' })
+  @ApiFoundResponse({ description: 'Return posts with query param.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async searchPosts(
     @Query('query') query: string,
     @Query() params: PaginationPostsDto,
@@ -55,9 +55,9 @@ export class PostsController {
   }
 
   @Get('filter/category/:category')
-  @ApiOperation({ summary: 'Get posts by category.' })
-  @ApiFoundResponse()
-  @ApiNotFoundResponse()
+  @ApiOperation({ summary: 'Find posts by category.' })
+  @ApiFoundResponse({ description: 'Return all posts by category.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async filterPostsByCategory(
     @Param('category') category: string,
     @Query() params: PaginationPostsDto,
@@ -67,36 +67,36 @@ export class PostsController {
   }
 
   @Get('filter/author/:id')
-  @ApiOperation({ summary: 'Get posts by author ID.' })
-  @ApiFoundResponse()
-  @ApiNotFoundResponse()
+  @ApiOperation({ summary: 'Find posts by author ID.' })
+  @ApiFoundResponse({ description: 'Return post by author ID.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async filterPostsByAuthor(@Param('id', MongoIdPipe) id: string) {
     const posts = await this.postsService.findByAuthor(id);
     return posts;
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get one post by ID.' })
-  @ApiFoundResponse()
-  @ApiNotFoundResponse()
+  @ApiOperation({ summary: 'Find post by ID.' })
+  @ApiFoundResponse({ description: 'Return post by ID.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async findOne(@Param('id', MongoIdPipe) id: string) {
     const post = await this.postsService.findOne(id);
     return post;
   }
 
   @Get('user/:id')
-  @ApiOperation({ summary: 'Get all posts from a user ID.' })
-  @ApiFoundResponse()
-  @ApiNotFoundResponse()
+  @ApiOperation({ summary: 'Find all posts by user ID.' })
+  @ApiFoundResponse({ description: 'Return all posts by user ID.' })
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   async findByAuthor(@Param('id', MongoIdPipe) id: string) {
     const posts = await this.postsService.findByAuthor(id);
     return posts;
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create a post.' })
+  @ApiOperation({ summary: 'Create post.' })
   @ApiCreatedResponse({ description: 'User has been successfully created.' })
-  @ApiNotFoundResponse()
+  @ApiNotFoundResponse({ description: 'Posts not found.' })
   @ApiUnauthorizedResponse({
     description: 'You must be logged in.',
   })
@@ -107,7 +107,7 @@ export class PostsController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update a post by ID.' })
+  @ApiOperation({ summary: 'Update post by ID.' })
   @ApiOkResponse({ description: 'Post has been successfully updated.' })
   @ApiNotFoundResponse({ description: 'Post not found.' })
   @ApiUnauthorizedResponse({
@@ -125,7 +125,7 @@ export class PostsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete a post by ID.' })
+  @ApiOperation({ summary: 'Delete post by ID.' })
   @ApiOkResponse({ description: 'Post has been successfully deleted.' })
   @ApiNotFoundResponse({ description: 'Post not founded.' })
   @ApiUnauthorizedResponse({
