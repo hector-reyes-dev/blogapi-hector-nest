@@ -1,38 +1,56 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# 🐊  Bootcamp JavaScript en el Backend: Proyecto Final Blog API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![image](https://github.com/hector-reyes-dev/blogapi-hector-nest/assets/63076719/6242ad76-7c0d-4f68-8cfe-9ec8d000e8be)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- Deploy: [GET Posts](https://blogapi-hector-nest-production.up.railway.app/docs)
+- Docs: [Docs](https://blogapi-hector-nest-production.up.railway.app/api/posts)
+- Código Facilito: [Bootcamp](https://codigofacilito.com/programas/javascript-backend)
 
-## Description
+## Descripción
+Proyecto concebido durante el Bootcamp de JavaScript en el Backend, ofrecido a través de la plataforma de Código Facilito. Se centra en la creación de una API mediante NestJS para gestionar el Backend de un Blog, incorporando módulos fundamentales como Usuarios, Posts, Admin y Auth. La iniciativa surge con el propósito de ser integrada en mi sitio web personal en [hectorcreative.dev](https://hectorcreative.dev/), el cual está actualmente en desarrollo. Se continuará trabajando en el proyecto para satisfacer las exigencias específicas del Blog de Héctor Reyes.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+⚠ Los Posts incluidos en esta versión fueron generados por IA a partir de notas de cursos que he tomado a lo largo de mi carrera. Estos no serán publicados y solo se realizaron con el fin de realizar la entrega del proyecto.
 
-## Installation
+Las especificaciones del proyecto fueron las siguientes: [Especificaciones](https://iamdoomling.notion.site/Trabajo-pr-ctico-final-f366a1dab34245ae83726bb31fb59a25)
+
+### ✍ Planeación del Proyecto
+La planeación del proyecto se realizó con ayuda del gestor de proyectos integrado en Github: [Proyecto Github](https://github.com/users/hector-reyes-dev/projects/3/views/1)
+
+## Descarga el Proyecto 🚀
+
+Estas instrucciones te permitirán obtener una copia funcional del proyecto en tu máquina local con fines educativos.
+
+
+### 📋 Requirements
+
+- [ ] Node
+- [ ] NPM
+- [ ] NestJS
+
+
+### 🔧 Instalación
+
+Instala el proyecto mediante Git Clone o descargando el archivo Zip.
+
+Una vez instalado, no olvides ejecutar:
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### 🧃 Variables de Entorno 
+Construye tu archivo .env para consumir las siguientes variables de entorno: 
+- MONGO_INITDB_ROOT_USERNAME= {mongo_username}
+- MONGO_INITDB_ROOT_PASSWORD= {mongo_password}
+- MONGO_DB= {mongo_db_name}
+- MONGO_PORT= {port}
+- MONGO_HOST= {host_cluster}
+- MONGO_CONNECTION= {mongodb}
+- JWT_SECRET= {secret_key}
+
+### 📦 Deploy
+
+Ejecuta el proyecto con:
 
 ```bash
 # development
@@ -45,29 +63,36 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## 🛠️ Construido con:
 
-```bash
-# unit tests
-$ npm run test
+* [Github Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects) - Gestor de Proyectos
+* [NestJS](https://nestjs.com/) - Framework Backend
+* [Swagger](https://swagger.io/) - Documentación
+* [Railway](https://railway.app/) - Herramienta de Deploy
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+## 🛫 Siguientes pasos
 
-## Support
+- [Web Personal](https://hectorcreative.dev/) - Creación de UI para blog
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## ✒️ Autor
+- **Héctor Reyes** - _Diseño y Desarrollo_ - [Héctor Creative Dev](https://hectorcreative.dev/)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## 📄 Licencia
 
-Nest is [MIT licensed](LICENSE).
+Este proyecto está bajo la Licencia (MIT).
+
+
+## 🎁 Gracias por tu atención.
+
+- Cuéntale a otros acerca del proyecto 📢
+- Invitame un taquito 🌮 o no olvides dejar una ⭐
+- Taquito: [Comprar un taco](https://www.paypal.me/HReyes117)
+
+🐱‍🚀
+
+---
+
+⌨️ con 💚 por [Héctor Creative Dev](https://hectorcreative.dev/) 😊
