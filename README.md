@@ -48,6 +48,8 @@ Construye tu archivo .env para consumir las siguientes variables de entorno:
 - MONGO_CONNECTION= {mongodb}
 - JWT_SECRET= {secret_key}
 
+  También puedes copiar el archivo .env.example
+
 ### 📦 Deploy
 
 Ejecuta el proyecto con:
@@ -62,6 +64,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+### Colección de Postman
+
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/14592762-7e860092-7449-4c8c-9a34-435331747bc7?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D14592762-7e860092-7449-4c8c-9a34-435331747bc7%26entityType%3Dcollection%26workspaceId%3D502b1463-cf48-4d06-bca2-8dfb8b27789a)
 
 ## 🛠️ Construido con:
 
